@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lettuce?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useAffectedRows=true
+    username: root
+    password: 123456
+    hikari:
+      pool-name: t-pool
+      minimum-idle: 10
+      max-lifetime: 300000
+      idle-timeout: 60000
+  application:
+    name: spring-transaction
+server:
+  port: 8088
+logging:
+  level:
+    org:
+      springframework:
+        transaction: debug
+        orm.jpa: debug
+        web: info
+    ROOT: info
+    com.baomidou.mybatisplus: info
+    noah.spring.transaction.mapper: info
