@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.*;
 
@@ -21,7 +22,7 @@ public class HelloService {
         return executor;
     }
 
-    @Async("noahThreadPool1")
+    @Async("noahThreadPool")
     public Future<Integer> noahThreadAsync() {
 
         log.info("thread name:{}", Thread.currentThread().getName());
@@ -33,6 +34,8 @@ public class HelloService {
         return AsyncResult.forValue(1024);
     }
 
+
+    @Transactional
     @Async
     public void asyncHello() {
         try {

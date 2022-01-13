@@ -40,6 +40,13 @@ public class HelloController {
         return "hello noah";
     }
 
+    @GetMapping("/helloSimple")
+    public String helloSimple() {
+        helloService.asyncHello();
+
+        return "hello noah";
+    }
+
     @GetMapping("/noah")
     public String noahAsync() {
 
