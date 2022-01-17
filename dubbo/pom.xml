@@ -23,6 +23,8 @@
 
     <modules>
 
+        <module>dubboAsync</module>
+        <module>dubboClient</module>
     </modules>
 
 </project>
