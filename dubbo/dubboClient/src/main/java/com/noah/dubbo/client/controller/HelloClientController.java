@@ -15,16 +15,16 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class HelloClientController {
 
-    @DubboReference
+    @DubboReference(timeout = 1000)
     HelloService helloService;
 
     @GetMapping("")
     public String helloNoah() throws ExecutionException, InterruptedException {
 
-        //String greeting = helloService.greeting("noah");
+        String greeting = helloService.greeting("noah");
         //helloService.replyGreeting("noah v2");
-        CompletableFuture<String> noah_v2 = helloService.greeting("noah v2", Byte.MAX_VALUE);
-        log.info(noah_v2.get());
+        //CompletableFuture<String> noah_v2 = helloService.greeting("noah v2", Byte.MAX_VALUE);
+        //log.info(noah_v2.get());
         return "hello noah";
     }
 }
