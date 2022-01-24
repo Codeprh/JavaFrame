@@ -31,6 +31,7 @@
         <module>transaction</module>
         <module>java</module>
         <module>utils</module>
+        <module>dubboAlibaba</module>
     </modules>
 
 
