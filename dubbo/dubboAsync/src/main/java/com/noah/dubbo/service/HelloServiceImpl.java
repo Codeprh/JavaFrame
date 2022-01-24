@@ -5,7 +5,7 @@ import org.apache.dubbo.config.annotation.DubboService;
 
 import java.util.concurrent.TimeUnit;
 
-@DubboService(timeout = 1000)
+@DubboService(timeout = 1000, weight = 300)
 @Slf4j
 public class HelloServiceImpl implements HelloService {
 
