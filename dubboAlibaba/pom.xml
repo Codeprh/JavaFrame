@@ -15,6 +15,7 @@
         <module>dubboServer</module>
         <module>dubboZookeeper</module>
         <module>dubboAlibabaClient</module>
+        <module>dubboapi</module>
     </modules>
 
     <properties>

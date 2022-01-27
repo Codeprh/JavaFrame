@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 public class ProviderBootstrap {
     public static void main(String[] args) throws Exception {
-        log.info("启动了200的端口");
         SpringApplication.run(ProviderBootstrap.class, args);
     }
 }

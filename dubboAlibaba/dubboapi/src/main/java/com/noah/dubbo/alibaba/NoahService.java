@@ -1,4 +1,4 @@
-package com.noah.dubbo.alibaba.service;
+package com.noah.dubbo.alibaba;
 
 public interface NoahService {
 

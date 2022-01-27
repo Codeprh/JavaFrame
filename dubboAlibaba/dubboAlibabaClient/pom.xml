@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.codingprh.demo</groupId>
-            <artifactId>dubboZookeeper</artifactId>
+            <artifactId>dubboapi</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
