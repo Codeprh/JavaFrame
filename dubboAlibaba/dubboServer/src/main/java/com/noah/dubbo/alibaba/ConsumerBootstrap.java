@@ -10,7 +10,11 @@ public class ConsumerBootstrap {
         context.start();
         NoahService noahService = (NoahService) context.getBean("noahService");
         String hello = noahService.hello("noah");
+        System.out.println("==========");
+        System.out.println("==========");
         System.out.println(hello);
+        System.out.println("==========");
+        System.out.println("==========");
 
 //        System.out.println("start void test...");
 //        demoService.testVoid();
