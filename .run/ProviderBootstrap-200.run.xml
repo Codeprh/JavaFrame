@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ProviderBootstrap-200" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.noah.dubbo.alibaba.ProviderBootstrap" />
+    <option name="MAIN_CLASS_NAME" value="com.noah.dubbo.alibaba.ConsumeBootstrap" />
     <module name="dubboServer" />
     <extension name="coverage">
       <pattern>
@@ -8,6 +8,22 @@
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+  <configuration default="false" name="ProviderBootstrap-200" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false">
+    <module name="dubboZookeeper" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.noah.dubbo.alibaba.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.noah.dubbo.alibaba.ProviderBootstrap" />
+    <option name="VM_PARAMETERS" value="-Dserver.port=8082" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

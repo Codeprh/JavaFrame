@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>dubboServer</module>
+        <module>dubboZookeeper</module>
+        <module>dubboAlibabaClient</module>
     </modules>
 
     <properties>
