@@ -32,15 +32,15 @@
         </dependency>
         <dependency>
             <groupId>com.codingprh.demo</groupId>
+            <artifactId>dubboApacheApi</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.codingprh.demo</groupId>
             <artifactId>dubboAsync</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.dubbo</groupId>-->
-        <!--            <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
-        <!--            <version>${dubbo.version}</version>-->
-        <!--            <type>pom</type>-->
-        <!--        </dependency>-->
+
     </dependencies>
 
 

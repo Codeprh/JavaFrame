@@ -26,6 +26,7 @@
 
         <module>dubboAsync</module>
         <module>dubboClient</module>
+        <module>dubboApacheApi</module>
     </modules>
 
     <dependencyManagement>

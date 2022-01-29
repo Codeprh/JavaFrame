@@ -1,11 +1,12 @@
 package com.noah.dubbo.service;
 
+import com.noah.dubbo.apache.api.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import java.util.concurrent.TimeUnit;
 
-@DubboService(timeout = 1000, weight = 300)
+@DubboService(timeout = 1000)
 @Slf4j
 public class HelloServiceImpl implements HelloService {
 
