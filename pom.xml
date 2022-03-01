@@ -32,6 +32,7 @@
         <module>java</module>
         <module>utils</module>
         <module>dubboAlibaba</module>
+        <module>redis</module>
     </modules>
 
 

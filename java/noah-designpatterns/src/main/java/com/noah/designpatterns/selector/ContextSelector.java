@@ -29,16 +29,6 @@ import java.util.function.Supplier;
  */
 public class ContextSelector<C, R> {
 
-    public static void main(String[] args) {
-        int param = -3;
-        String result = ContextSelector.init(param, o -> "4")
-                .register(() -> new Context<>(o -> o == 1, o -> "1"))
-                .register(() -> new Context<>(o -> o == 2, o -> "2"))
-                .register(() -> new Context<>(o -> o == 3, o -> "3"))
-                .execute();
-        System.out.println(result);
-    }
-
     /**
      * 参数
      */
@@ -60,9 +50,9 @@ public class ContextSelector<C, R> {
     /**
      * 初始化,无默认返回结果
      *
-     * @param param 参数
      * @param <C>   参数类型
      * @param <R>   结果类型
+     * @param param 参数
      * @return 选择器
      */
     public static <C, R> ContextSelector<C, R> init(final C param) {
