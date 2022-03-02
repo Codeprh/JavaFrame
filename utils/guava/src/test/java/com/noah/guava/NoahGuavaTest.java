@@ -44,7 +44,7 @@ public class NoahGuavaTest {
                     }
                 });
 
-        String key = "kirito";
+        String key = "noah";
         cache.put(key,fetchValueFromServer(key));
 
         assertEquals(1, cache.size());
@@ -61,7 +61,7 @@ public class NoahGuavaTest {
                     }
                 });
 
-        String key = "kirito";
+        String key = "noah";
         String cacheValue = cache.get(key);
         if ("".equals(cacheValue)) {
             cacheValue = fetchValueFromServer(key);
@@ -124,13 +124,13 @@ public class NoahGuavaTest {
                     }
                 });
 
-        cache.get("kirito");
+        cache.get("noah");
         assertEquals(1, cache.size());
 
-        cache.get("kirito");
+        cache.get("noah");
         Thread.sleep(2000);
 
-        assertNull(cache.getIfPresent("kirito"));
+        assertNull(cache.getIfPresent("noah"));
     }
 
     @Test
@@ -144,11 +144,11 @@ public class NoahGuavaTest {
                             }
                         });
 
-        String name = cache.get("kirito");
+        String name = cache.get("noah");
         assertEquals("KIRITO", name);
 
-        cache.invalidate("kirito");
-        assertNull(cache.getIfPresent("kirito"));
+        cache.invalidate("noah");
+        assertNull(cache.getIfPresent("noah"));
     }
 
     @Test
@@ -164,16 +164,16 @@ public class NoahGuavaTest {
                     }
                 });
 
-        String oldValue = cache.get("kirito");
+        String oldValue = cache.get("noah");
 
         new Thread(() -> {
-            cache.refresh("kirito");
+            cache.refresh("noah");
         }).start();
 
         // make sure another refresh thread is scheduling
         Thread.sleep(500);
 
-        String val1 = cache.get("kirito");
+        String val1 = cache.get("noah");
 
         //刷新的时候，返回旧值
         assertEquals(oldValue, val1);
@@ -181,7 +181,7 @@ public class NoahGuavaTest {
         // make sure refresh cache
         Thread.sleep(2000);
 
-        String val2 = cache.get("kirito");
+        String val2 = cache.get("noah");
         assertNotEquals(oldValue, val2);
 
     }
@@ -196,9 +196,9 @@ public class NoahGuavaTest {
                     }
                 });
 
-        String first = cache.get("kirito");
+        String first = cache.get("noah");
         Thread.sleep(1000);
-        String second = cache.get("kirito");
+        String second = cache.get("noah");
 
         assertNotEquals(first, second);
     }
