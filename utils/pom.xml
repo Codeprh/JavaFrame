@@ -14,6 +14,7 @@
     <modules>
         <module>apache</module>
         <module>guava</module>
+        <module>mapstruct</module>
     </modules>
 
     <properties>
