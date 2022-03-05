@@ -34,6 +34,8 @@
         <module>utils</module>
         <module>dubboAlibaba</module>
         <module>redis</module>
+        <module>ddd</module>
+        <module>noahbootstart</module>
     </modules>
 
 
