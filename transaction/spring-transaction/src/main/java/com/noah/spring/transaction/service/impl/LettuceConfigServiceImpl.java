@@ -139,6 +139,7 @@ public class LettuceConfigServiceImpl extends ServiceImpl<LettuceConfigMapper, L
     }
 
     /**
+     * PROPAGATION_REQUIRED,ISOLATION_DEFAULT,-java.lang.Exception
      * 事务传播机制
      * {@link Propagation.REQUIRED}：事务默认执行级别，事务不存在，创建事务。事务存在加入当前事务
      * {@link Propagation.SUPPORTS}：事务存在，加入当前事务。事务不存在，非事务方式执行

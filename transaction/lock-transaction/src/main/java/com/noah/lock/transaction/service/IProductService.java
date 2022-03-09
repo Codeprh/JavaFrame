@@ -1,11 +1,11 @@
 package com.noah.lock.transaction.service;
 
-import com.noah.lock.transaction.entity.Product;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.noah.lock.transaction.entity.Product;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author noah
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IProductService extends IService<Product> {
 
+    public Integer sellProduct(Long id);
 }
