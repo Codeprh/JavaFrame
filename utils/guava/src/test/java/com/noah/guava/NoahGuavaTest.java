@@ -4,14 +4,18 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.CacheStats;
 import com.google.common.cache.LoadingCache;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.LongStream;
 
 import static org.junit.Assert.*;
 
+@Slf4j
 public class NoahGuavaTest {
 
     private String fetchValueFromServer(String key) {
@@ -45,7 +49,7 @@ public class NoahGuavaTest {
                 });
 
         String key = "noah";
-        cache.put(key,fetchValueFromServer(key));
+        cache.put(key, fetchValueFromServer(key));
 
         assertEquals(1, cache.size());
     }
@@ -242,6 +246,36 @@ public class NoahGuavaTest {
         cache.get("two");
         cache.get("three");
         cache.get("four");
+    }
+
+    @SneakyThrows
+    @Test
+    public void guava_test_time() {
+
+        LoadingCache<Long, String> activityCache = CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.SECONDS)
+                .refreshAfterWrite(6, TimeUnit.SECONDS).build(new CacheLoader<Long, String>() {
+                    @Override
+                    public String load(Long id) throws Exception {
+                        log.info("触发了db查询，id:{}", id);
+                        id++;
+                        return id.toString();
+                    }
+                });
+
+        while (true) {
+            LongStream.range(1, 3).forEach(i -> {
+                try {
+                    log.info("r=" + activityCache.get(i));
+                    TimeUnit.SECONDS.sleep(12);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+            });
+            TimeUnit.SECONDS.sleep(1);
+        }
     }
 
 }
