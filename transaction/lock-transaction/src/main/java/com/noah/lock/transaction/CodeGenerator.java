@@ -36,7 +36,7 @@ public class CodeGenerator {
         String projectPath = new File(System.getProperty("user.dir")).getParent() + "/JavaFrame/transaction/lock-transaction/src/main/java";
         String resourePath = new File(System.getProperty("user.dir")).getParent() + "/JavaFrame/transaction/lock-transaction/src/main/";
 
-        FastAutoGenerator.create("jdbc:mysql://10.252.189.253:32282/noah?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useAffectedRows=true",
+        FastAutoGenerator.create("jdbc:mysql://11.xx.xx:32282/noah?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useAffectedRows=true",
                 "root", "noah123")
                 .globalConfig(builder -> {
                     builder.author("noah") // 设置作者
