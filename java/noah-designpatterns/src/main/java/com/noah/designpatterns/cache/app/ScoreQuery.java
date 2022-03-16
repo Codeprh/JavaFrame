@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @param <V>
  */
 @Slf4j
-public class ScoreQuery<A, V> implements Computable<String, Integer> {
+public class ScoreQuery implements Computable<String, Integer> {
 
     @Override
     public Integer compute(String arg) throws Exception {
