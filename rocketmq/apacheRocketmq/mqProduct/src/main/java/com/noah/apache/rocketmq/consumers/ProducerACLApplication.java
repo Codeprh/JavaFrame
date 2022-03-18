@@ -57,11 +57,11 @@ public class ProducerACLApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Send string
         SendResult sendResult = rocketMQTemplate.syncSend(springTopic + ":acl", "Hello, ACL Msg!");
-        System.out.printf("syncSend1 to topic %s sendResult=%s %n", springTopic, sendResult);
+        log.info("syncSend1 to topic %s sendResult=%s %n", springTopic, sendResult);
 
         // Send string with spring Message
         sendResult = rocketMQTemplate.syncSend(springTopic, MessageBuilder.withPayload("Hello, World! I'm from spring message & ACL Msg").build());
-        System.out.printf("syncSend2 to topic %s sendResult=%s %n", springTopic, sendResult);
+        log.info("syncSend2 to topic %s sendResult=%s %n", springTopic, sendResult);
 
          //Send transactional messages
         testTransaction();
@@ -77,7 +77,7 @@ public class ProducerACLApplication implements CommandLineRunner {
                     setHeader(RocketMQHeaders.TRANSACTION_ID, "KEY_" + i).build();
                 SendResult sendResult = rocketMQTemplate.sendMessageInTransaction(
                     springTransTopic + ":" + tags[i % tags.length], msg, null);
-                System.out.printf("------ send Transactional msg body = %s , sendResult=%s %n",
+                log.info("------ send Transactional msg body = %s , sendResult=%s %n",
                     msg.getPayload(), sendResult.getSendStatus());
 
                 Thread.sleep(10);
@@ -104,7 +104,7 @@ public class ProducerACLApplication implements CommandLineRunner {
         @Override
         public RocketMQLocalTransactionState executeLocalTransaction(Message msg, Object arg) {
             String transId = (String) msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);
-            System.out.printf("#### executeLocalTransaction is executed, msgTransactionId=%s %n",
+            log.info("#### executeLocalTransaction is executed, msgTransactionId=%s %n",
                     transId);
             int value = transactionIndex.getAndIncrement();
             int status = value % 3;
@@ -112,18 +112,18 @@ public class ProducerACLApplication implements CommandLineRunner {
             if (status == 0) {
                 // Return local transaction with success(commit), in this case,
                 // this message will not be checked in checkLocalTransaction()
-                System.out.printf("    # COMMIT # Simulating msg %s related local transaction exec succeeded! ### %n", transId);
+                log.info("    # COMMIT # Simulating msg %s related local transaction exec succeeded! ### %n", transId);
                 return RocketMQLocalTransactionState.COMMIT;
             }
 
             if (status == 1) {
                 // Return local transaction with failure(rollback) , in this case,
                 // this message will not be checked in checkLocalTransaction()
-                System.out.printf("    # ROLLBACK # Simulating %s related local transaction exec failed! %n", transId);
+                log.info("    # ROLLBACK # Simulating %s related local transaction exec failed! %n", transId);
                 return RocketMQLocalTransactionState.ROLLBACK;
             }
 
-            System.out.printf("    # UNKNOW # Simulating %s related local transaction exec UNKNOWN! \n");
+            log.info("    # UNKNOW # Simulating %s related local transaction exec UNKNOWN! \n");
             return RocketMQLocalTransactionState.UNKNOWN;
         }
 
@@ -152,7 +152,7 @@ public class ProducerACLApplication implements CommandLineRunner {
                         break;
                 }
             }
-            System.out.printf("------ !!! checkLocalTransaction is executed once," +
+            log.info("------ !!! checkLocalTransaction is executed once," +
                             " msgTransactionId=%s, TransactionState=%s status=%s %n",
                     transId, retState, status);
             return retState;
