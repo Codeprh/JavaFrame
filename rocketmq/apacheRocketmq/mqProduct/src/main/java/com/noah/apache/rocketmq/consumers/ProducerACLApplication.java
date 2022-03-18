@@ -17,11 +17,7 @@
 
 package com.noah.apache.rocketmq.consumers;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.annotation.Resource;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
@@ -36,10 +32,15 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.support.MessageBuilder;
 
+import javax.annotation.Resource;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Producer, using RocketMQTemplate sends a variety of messages
  */
 @SpringBootApplication
+@Slf4j
 public class ProducerACLApplication implements CommandLineRunner {
     @Resource
     private RocketMQTemplate rocketMQTemplate;
@@ -92,25 +93,33 @@ public class ProducerACLApplication implements CommandLineRunner {
 
         private ConcurrentHashMap<String, Integer> localTrans = new ConcurrentHashMap<String, Integer>();
 
+        /**
+         * 执行事务提交
+         * executeLocalTransaction 方法来执行本地事务
+         *
+         * @param msg
+         * @param arg
+         * @return
+         */
         @Override
         public RocketMQLocalTransactionState executeLocalTransaction(Message msg, Object arg) {
-            String transId = (String)msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);
+            String transId = (String) msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);
             System.out.printf("#### executeLocalTransaction is executed, msgTransactionId=%s %n",
-                transId);
+                    transId);
             int value = transactionIndex.getAndIncrement();
             int status = value % 3;
             localTrans.put(transId, status);
             if (status == 0) {
                 // Return local transaction with success(commit), in this case,
                 // this message will not be checked in checkLocalTransaction()
-                System.out.printf("    # COMMIT # Simulating msg %s related local transaction exec succeeded! ### %n", msg.getPayload());
+                System.out.printf("    # COMMIT # Simulating msg %s related local transaction exec succeeded! ### %n", transId);
                 return RocketMQLocalTransactionState.COMMIT;
             }
 
             if (status == 1) {
                 // Return local transaction with failure(rollback) , in this case,
                 // this message will not be checked in checkLocalTransaction()
-                System.out.printf("    # ROLLBACK # Simulating %s related local transaction exec failed! %n", msg.getPayload());
+                System.out.printf("    # ROLLBACK # Simulating %s related local transaction exec failed! %n", transId);
                 return RocketMQLocalTransactionState.ROLLBACK;
             }
 
@@ -118,9 +127,16 @@ public class ProducerACLApplication implements CommandLineRunner {
             return RocketMQLocalTransactionState.UNKNOWN;
         }
 
+        /**
+         * 校验事务提交
+         * checkLocalTransaction 方法用于检查本地事务状态，并回应消息队列的检查请求
+         *
+         * @param msg
+         * @return
+         */
         @Override
         public RocketMQLocalTransactionState checkLocalTransaction(Message msg) {
-            String transId = (String)msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);
+            String transId = (String) msg.getHeaders().get(RocketMQHeaders.TRANSACTION_ID);
             RocketMQLocalTransactionState retState = RocketMQLocalTransactionState.COMMIT;
             Integer status = localTrans.get(transId);
             if (null != status) {
@@ -137,8 +153,8 @@ public class ProducerACLApplication implements CommandLineRunner {
                 }
             }
             System.out.printf("------ !!! checkLocalTransaction is executed once," +
-                    " msgTransactionId=%s, TransactionState=%s status=%s %n",
-                transId, retState, status);
+                            " msgTransactionId=%s, TransactionState=%s status=%s %n",
+                    transId, retState, status);
             return retState;
         }
     }
