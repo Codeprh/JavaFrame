@@ -16,6 +16,7 @@ import java.util.function.Supplier;
  * @author noah
  */
 public class BizValidate {
+
     private static final int DEFAULT_CODE = ResponseCodeEnum.PARAM_IS_NULL.getCode();
 
     public static void isTrue(boolean expression) {

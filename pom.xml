@@ -36,6 +36,7 @@
         <module>redis</module>
         <module>ddd</module>
         <module>noahbootstart</module>
+        <module>leetcode</module>
     </modules>
 
 

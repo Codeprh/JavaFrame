@@ -262,19 +262,20 @@ public class NoahGuavaTest {
                     }
                 });
 
-        while (true) {
-            LongStream.range(1, 3).forEach(i -> {
-                try {
-                    log.info("r=" + activityCache.get(i));
-                    TimeUnit.SECONDS.sleep(12);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
 
-            });
+        LongStream.range(1, 3).forEach(i -> {
+            try {
+                log.info("r=" + activityCache.get(i));
+                //TimeUnit.SECONDS.sleep(12);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        while (true) {
             TimeUnit.SECONDS.sleep(1);
+            log.info("r=" + activityCache.get(1L));
         }
     }
 

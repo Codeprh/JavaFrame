@@ -56,20 +56,25 @@ public class ProducerACLApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Send string
-        SendResult sendResult = rocketMQTemplate.syncSend(springTopic + ":acl", "Hello, ACL Msg!");
-        log.info("syncSend1 to topic {} sendResult={} %n", springTopic, sendResult);
-
-        // Send string with spring Message
-        sendResult = rocketMQTemplate.syncSend(springTopic, MessageBuilder.withPayload("Hello, World! I'm from spring message & ACL Msg").build());
-        log.info("syncSend2 to topic {} sendResult={} %n", springTopic, sendResult);
+        //SendResult sendResult = rocketMQTemplate.syncSend(springTopic + ":acl", "Hello, ACL Msg!");
+        //log.info("syncSend1 to topic {} sendResult={} %n", springTopic, sendResult);
+        //
+        //// Send string with spring Message
+        //sendResult = rocketMQTemplate.syncSend(springTopic, MessageBuilder.withPayload("Hello, World! I'm from spring message & ACL Msg").build());
+        //log.info("syncSend2 to topic {} sendResult={} %n", springTopic, sendResult);
 
          //Send transactional messages
-        testTransaction();
+        //testTransaction();
+
+
+
     }
 
 
     private void testTransaction() throws MessagingException {
+
         String[] tags = new String[]{"TagA", "TagB", "TagC", "TagD", "TagE"};
+
         for (int i = 0; i < 10; i++) {
             try {
 
