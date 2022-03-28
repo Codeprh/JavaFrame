@@ -37,6 +37,7 @@
         <module>ddd</module>
         <module>noahbootstart</module>
         <module>leetcode</module>
+        <module>jmh</module>
     </modules>
 
 

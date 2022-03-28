@@ -12,15 +12,57 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConcurrentHashMapBug {
 
     public static void main(String[] args) {
+        //useChm();
+        chmBug();
 
-        //chmBug();
-
-        System.out.println("f(" + 14 + ") =" + fibonacci(14));
+        //System.out.println("f(" + 14 + ") =" + fibonacci(14));
     }
 
     static Map<Integer, Integer> cache = new ConcurrentHashMap<>();
 
-    static int fibonacci(int i) {
+    /**
+     * 入门使用chm
+     */
+    public static void useChm() {
+
+        Map<String, String> map = new ConcurrentHashMap<>(16);
+        String key = "noah";
+        log.info("1:" + map.get(key));
+        String s = map.computeIfAbsent(key, k -> "hello," + k);
+        log.info("2:" + s);
+
+    }
+
+    /**
+     * 演示死锁的bug
+     */
+    private static void chmBug() {
+
+        Map<String, Integer> map = new ConcurrentHashMap<>(16);
+
+        map.computeIfAbsent(
+                "AaAa",
+                // if the computation detectably attempts a recursive update to this map that would otherwise never complete
+                key -> map.computeIfAbsent("BBBB", key2 -> 16)
+        );
+
+        log.info("end method,map:{}", map);
+    }
+
+    /**
+     * 死锁bug避免
+     */
+    private static void fixChmBug() {
+
+    }
+
+    /**
+     * 斐波那契数列
+     *
+     * @param i
+     * @return
+     */
+    public static int fibonacci(int i) {
         if (i == 0)
             return i;
         if (i == 1)
@@ -31,20 +73,4 @@ public class ConcurrentHashMapBug {
         });
     }
 
-    private static void chmBug() {
-        Map<String, Integer> map = new ConcurrentHashMap<>(16);
-        log.info("start method");
-        int HASH_BITS = 0x7fffffff;
-
-        map.computeIfAbsent(
-                "AaAa",
-                key -> {
-                    return map.computeIfAbsent(
-                            "BBBB",
-                            key2 -> 42);
-                }
-        );
-
-        log.info("end method,map:{}", map);
-    }
 }
