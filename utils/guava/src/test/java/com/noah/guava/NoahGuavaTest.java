@@ -265,17 +265,20 @@ public class NoahGuavaTest {
 
         LongStream.range(1, 3).forEach(i -> {
             try {
-                log.info("r=" + activityCache.get(i));
+                activityCache.get(i);
+                //log.info("r=");
                 //TimeUnit.SECONDS.sleep(12);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+            log.info("init over");
+
         });
 
         while (true) {
-            TimeUnit.SECONDS.sleep(1);
-            log.info("r=" + activityCache.get(1L));
+            TimeUnit.SECONDS.sleep(19);
+            String ifPresent = activityCache.getIfPresent(1L);
         }
     }
 
