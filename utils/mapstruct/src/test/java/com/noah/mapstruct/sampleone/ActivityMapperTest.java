@@ -12,10 +12,10 @@ import javax.annotation.Resource;
 @SpringBootTest(classes = MapStuctApp.class)
 @RunWith(SpringRunner.class)
 @Slf4j
-public class CarMapperTest {
+public class ActivityMapperTest {
 
     @Resource
-    CarMapper carMapper;
+    ActivityMapper activityMapper;
 
     @Test
     public void testMy(){
@@ -24,13 +24,13 @@ public class CarMapperTest {
 
     @Test
     public void  test123(){
-        Car car = new Car();
+        Activity activity = new Activity();
 
-        car.setMark1("这是po的mark");
-        car.setLanguage("这是language");
-        CarDto carDto1 = carMapper.toCarDto(car);
+        activity.setMark1("这是po的mark");
+        activity.setLanguage("这是language");
+        ActivityDto activityDto1 = activityMapper.toActivityDto(activity);
         //CarDto carDto = CarMapper.INSTANCE.toCarDto(car);
-        log.info(carDto1 + "");
+        log.info(activityDto1 + "");
     }
 
 }
