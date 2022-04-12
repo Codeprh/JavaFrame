@@ -38,6 +38,7 @@
         <module>noahbootstart</module>
         <module>leetcode</module>
         <module>jmh</module>
+        <module>noahscript</module>
     </modules>
 
 
