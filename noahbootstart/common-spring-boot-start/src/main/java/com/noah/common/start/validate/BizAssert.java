@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  *
  * @author noah
  */
-public class BizValidate {
+public class BizAssert {
 
     private static final int DEFAULT_CODE = ResponseCodeEnum.PARAM_IS_NULL.getCode();
 
@@ -150,6 +150,10 @@ public class BizValidate {
         if (!expressionSupplier.get()) {
             throw new BizException(code, message);
         }
+    }
+
+    private static Object doReturn(boolean doReturnCondition, Supplier<?> returnSupplier) {
+        return returnSupplier.get();
     }
 
 }

@@ -2,7 +2,7 @@ package com.noah.mapstruct.sampleone;
 
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public class MarkMapper {
 
     public String mapMark(String mark) {
