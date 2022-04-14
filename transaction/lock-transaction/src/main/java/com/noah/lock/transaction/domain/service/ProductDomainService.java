@@ -31,6 +31,9 @@ public class ProductDomainService {
 
         System.out.println(namePlus.contains(name));
         System.out.println(name.contains(namePlus));
+
+        int a=2<<16;
+        System.out.println(a);
         //System.out.println(namePlus.contains(name));
         //exceptionClass.getName().contains(this.exceptionName)
     }
@@ -47,7 +50,6 @@ public class ProductDomainService {
         try {
 
             lock.lock();
-            int i = 100 / 0;
 
             String threadName = Thread.currentThread().getName();
             log.info("name:{},抢到了锁", threadName);

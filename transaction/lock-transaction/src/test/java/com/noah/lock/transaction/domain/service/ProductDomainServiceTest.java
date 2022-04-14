@@ -45,18 +45,18 @@ public class ProductDomainServiceTest {
     public void testPlus() {
 
         ExecutorService executorService = Executors.newFixedThreadPool(100);
-        CountDownLatch cdl = new CountDownLatch(10);
+        CountDownLatch cdl = new CountDownLatch(100);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
 
             new Thread(() -> {
                 try {
                     cdl.await();
                     //必现：超卖1件
-                    //productDomainService.sellProduct(1L);
+                    productDomainService.sellProduct(1L);
 
                     //必现：超卖20件
-                    productDomainService.sellProductError(1L);
+                    //productDomainService.sellProductError(1L);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
