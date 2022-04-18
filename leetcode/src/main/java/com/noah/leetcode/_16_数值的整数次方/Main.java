@@ -13,7 +13,13 @@ public class Main {
         Main app = new Main();
 
         double x = 2;
-        int n = -2147483648;
+        int n = 20;
+
+        for (int i=0;i<100;i++){
+            if ((i & 1) == 1){
+                System.out.println(i);
+            }
+        }
         //DoubleMath.
         //System.out.println(IntMath.pow((int) x, n));
         System.out.println(Math.pow(x, n));
@@ -44,7 +50,10 @@ public class Main {
 
         //减少计算次数
         while (absN > 0) {
+
+            //取余数 n%2 等价于 判断二进制最右一位值n&1 ；
             if ((absN & 1) == 1) {
+                System.out.println("N=" + absN + ",cal");
                 r *= x;
             }
             x *= x;
