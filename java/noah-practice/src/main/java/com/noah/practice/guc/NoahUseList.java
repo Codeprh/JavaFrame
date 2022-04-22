@@ -31,7 +31,20 @@ public class NoahUseList {
         //useArrayCopy();
         //doIndex();
         //addAll();
-        useStreamList();
+        //useStreamList();
+        equalTest();
+    }
+
+    public static void equalTest() {
+        Object[] a = new Object[]{};
+        Object[] b = new Object[]{};
+
+        String c = "";
+        String d = "";
+
+        System.out.println(a == b);
+        System.out.println(c == d);
+
     }
 
     public static void useStreamList() {
@@ -53,7 +66,7 @@ public class NoahUseList {
             stringSpliterator.forEachRemaining(s -> System.out.println(s + ",2forEachRemaining"));
         }
 
-        spliterator.forEachRemaining(s -> System.out.println(s+"1forEachRemaining"));
+        spliterator.forEachRemaining(s -> System.out.println(s + "1forEachRemaining"));
 
     }
 
