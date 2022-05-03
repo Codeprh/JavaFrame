@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class HelloClientController {
 
-    @DubboReference(timeout = 1000)
+    @DubboReference()
     HelloService helloService;
 
     @GetMapping("")
@@ -24,6 +24,12 @@ public class HelloClientController {
         //helloService.replyGreeting("noah v2");
         //CompletableFuture<String> noah_v2 = helloService.greeting("noah v2", Byte.MAX_VALUE);
         //log.info(noah_v2.get());
+        return "hello noah";
+    }
+
+    @GetMapping("leastActive")
+    public String helloNoahLeastActive() throws ExecutionException, InterruptedException {
+        String greeting = helloService.greeting("noah");
         return "hello noah";
     }
 }

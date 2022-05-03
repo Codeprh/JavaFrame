@@ -1,1 +1,2 @@
 noahconsistenthash=com.noah.dubbo.loadbalance.NoahConsistentHashLoadBalance
+noahleastactiveloadbalance=com.noah.dubbo.loadbalance.NoahLeastActiveLoadBalance
