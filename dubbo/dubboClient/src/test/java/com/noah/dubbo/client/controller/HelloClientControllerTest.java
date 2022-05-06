@@ -13,10 +13,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class HelloClientControllerTest extends TestCase {
 
     @DubboReference(timeout = 1000 * 60 * 10, filter = "activelimit")
+    //@DubboReference(timeout = 1000 * 60 * 10)
     HelloService helloService;
 
     @Test
     public void contextLoads() {
+
         for (int i = 0; i < 20; i++) {
             int fi = i;
             new Thread(() -> {

@@ -18,7 +18,7 @@ import static org.apache.dubbo.rpc.cluster.Constants.*;
 
 /**
  * LeastActiveLoadBalance，客户端的负载均衡
- * dubbo2.6.0版本的实现
+ * dubbo-2.6.0版本的实现
  * <p>
  * {@link LeastActiveLoadBalance}
  */
