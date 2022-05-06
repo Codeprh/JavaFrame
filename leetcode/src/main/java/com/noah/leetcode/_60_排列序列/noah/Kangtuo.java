@@ -8,8 +8,8 @@ import java.math.BigInteger;
  * @create: 2022/5/5
  **/
 public class Kangtuo {
-    static int N = 10000;
-    static long K = 1 - 1; //TODO toBigInteger
+    static int N = 4;
+    static long K = 2; //TODO toBigInteger
 
     static BigInteger f[] = new BigInteger[N];
 

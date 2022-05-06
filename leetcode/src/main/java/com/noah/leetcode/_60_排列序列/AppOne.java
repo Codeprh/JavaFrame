@@ -5,11 +5,15 @@ package com.noah.leetcode._60_排列序列;
  */
 public class AppOne {
 
-    public static void main(String[] args) {
-
-    }
-
     static class Solution {
+
+        //1 <= n <= 9
+        //1 <= k <= n!
+        public static void main(String[] args) {
+            Solution app = new Solution();
+            System.out.println(app.getPermutation(4, 5));
+        }
+
         public String getPermutation(int n, int k) {
 
             // 计算阶乘的数组
