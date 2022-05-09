@@ -31,7 +31,7 @@ public class LockServiceTest {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
         IntStream.rangeClosed(1, 100).forEach(i -> {
-            executorService.execute(() -> doSome(trainId));
+            //executorService.execute(() -> doSome(trainId));
         });
 
         try {
@@ -42,7 +42,9 @@ public class LockServiceTest {
 
     }
 
-    private void doSome(Long trainId) {
+    @Test
+    public void doSome() {
+        Long trainId = 100081L;
 
         RLock lock = redissonClient.getLock("TRAIN" + trainId);
         lock.lock();
@@ -51,7 +53,7 @@ public class LockServiceTest {
 
             System.out.println("获取到lock了，开始执行逻辑");
             if (cc == 0) {
-                TimeUnit.SECONDS.sleep(1000);
+                TimeUnit.SECONDS.sleep(32);
                 cc = 1;
                 System.out.println("更改为cc=1");
             }
