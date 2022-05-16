@@ -278,7 +278,7 @@ public class NoahGuavaTest {
 
         while (true) {
             TimeUnit.SECONDS.sleep(19);
-            String ifPresent = activityCache.getIfPresent(1L);
+            String ifPresent = activityCache.get(1L);
         }
     }
 
