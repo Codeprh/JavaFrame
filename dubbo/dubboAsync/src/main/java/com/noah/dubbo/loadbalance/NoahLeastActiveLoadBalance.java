@@ -128,7 +128,7 @@ public class NoahLeastActiveLoadBalance extends AbstractLoadBalance {
      * @param invocation
      * @return
      */
-    int getWeight(Invoker<?> invoker, Invocation invocation) {
+    public static int getWeight(Invoker<?> invoker, Invocation invocation) {
         int weight;
         URL url = invoker.getUrl();
         // Multiple registry scenario, load balance among multiple registries.
@@ -160,6 +160,18 @@ public class NoahLeastActiveLoadBalance extends AbstractLoadBalance {
             }
         }
         return Math.max(weight, 0);
+    }
+
+    /**
+     * 获取原始权重
+     *
+     * @param invoker
+     * @param invocation
+     * @return
+     */
+    public static Integer getOriginalWeight(Invoker<?> invoker, Invocation invocation) {
+        URL url = invoker.getUrl();
+        return url.getMethodParameter(invocation.getMethodName(), WEIGHT_KEY, DEFAULT_WEIGHT);
     }
 
     /**

@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class HelloClientController {
 
-    @DubboReference()
+    @DubboReference(loadbalance = "noahRoundRobinLoadBalance_264_1")
     HelloService helloService;
 
     @GetMapping("")

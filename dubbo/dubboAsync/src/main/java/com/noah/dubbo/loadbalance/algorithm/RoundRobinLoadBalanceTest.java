@@ -82,7 +82,7 @@ public class RoundRobinLoadBalanceTest {
         }
 
         /**
-         * 当前最新版本dubbo master分支中实现方式
+         * 当前最新版本dubbo master分支中实现方式(2.6.4版本)
          *
          * @return 选择的invoker的index
          */

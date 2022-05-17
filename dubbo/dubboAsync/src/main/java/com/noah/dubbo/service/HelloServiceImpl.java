@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import java.util.concurrent.TimeUnit;
-
+//一致性hash
 //@DubboService(timeout = 5000, loadbalance = "noahconsistenthash", parameters = {"hash.nodes", "4"})
 
 //最少链接负载均衡策略
@@ -17,7 +17,12 @@ import java.util.concurrent.TimeUnit;
 //@DubboService(timeout = 10 * 60 * 1000, loadbalance = "noahleastactiveloadbalance", weight = 200,filter = "activelimit")
 
 //8083端口配置
-@DubboService(timeout = 10 * 60 * 1000, loadbalance = "noahleastactiveloadbalance", weight = 300,filter = "activelimit")
+//@DubboService(timeout = 10 * 60 * 1000, loadbalance = "noahleastactiveloadbalance", weight = 300,filter = "activelimit")
+
+//加权轮训
+//@DubboService(timeout = 10 * 60 * 1000, weight = 5)
+//@DubboService(timeout = 10 * 60 * 1000, weight = 1)
+@DubboService(timeout = 10 * 60 * 1000, weight = 1)
 @Slf4j
 public class HelloServiceImpl implements HelloService {
 
@@ -31,7 +36,8 @@ public class HelloServiceImpl implements HelloService {
     public String greeting(String name) {
         log.info("log info for greeting" + name);
         try {
-            TimeUnit.MINUTES.sleep(10);
+            //TimeUnit.MINUTES.sleep(10);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

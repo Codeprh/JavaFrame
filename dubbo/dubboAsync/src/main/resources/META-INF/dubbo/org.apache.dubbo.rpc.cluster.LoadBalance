@@ -1,2 +1,4 @@
 noahconsistenthash=com.noah.dubbo.loadbalance.NoahConsistentHashLoadBalance
 noahleastactiveloadbalance=com.noah.dubbo.loadbalance.NoahLeastActiveLoadBalance
+noahRoundRobinLoadBalance_264=com.noah.dubbo.loadbalance.NoahRoundRobinLoadBalance_264
+noahRoundRobinLoadBalance_264_1=com.noah.dubbo.loadbalance.NoahRoundRobinLoadBalance_264_1
