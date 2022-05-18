@@ -1,4 +1,4 @@
-package _94_中序遍历;
+package com.noah.leetcode._94_中序遍历;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -32,16 +32,16 @@ public class AppMain_220517 {
     public List<Integer> inorderTraversal(TreeNode root) {
 
         List<Integer> res = new ArrayList<>();
-        Deque<TreeNode> stock = new LinkedList<>();
+        Deque<TreeNode> q = new LinkedList<>();
 
-        while (root != null || !stock.isEmpty()) {
+        while (root != null || !q.isEmpty()) {
 
             while (root != null) {
-                stock.push(root);
+                q.push(root);
                 root = root.left;
             }
 
-            root = stock.pop();
+            root = q.pop();
             res.add(root.val);
             root = root.right;
         }

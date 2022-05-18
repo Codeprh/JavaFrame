@@ -12,8 +12,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class HelloClientControllerTest extends TestCase {
 
-    //@DubboReference(timeout = 1000 * 60 * 10, filter = "activelimit")
+    //@DubboReference(timeout = 1000 * 60 * 10,loadbalance = "noahleastactiveloadbalance", filter = "activelimit")
     @DubboReference(timeout = 1000 * 60 * 10, loadbalance = "noahRoundRobinLoadBalance_264_1")
+    //@DubboReference(timeout = 1000 * 60 * 10, loadbalance = "noahconsistenthash", parameters = {"hash.nodes", "4"})
     HelloService helloService;
 
     @Test

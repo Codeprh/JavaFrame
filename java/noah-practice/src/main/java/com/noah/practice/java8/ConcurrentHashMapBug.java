@@ -38,7 +38,7 @@ public class ConcurrentHashMapBug {
      */
     private static void chmBug() {
 
-        Map<String, Integer> map = new ConcurrentHashMap<>(16);
+        Map<String, Integer> map = new ConcurrentHashMap<>();
 
         map.computeIfAbsent(
                 "AaAa",
