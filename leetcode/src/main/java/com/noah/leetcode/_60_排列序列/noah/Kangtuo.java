@@ -4,8 +4,6 @@ import java.math.BigInteger;
 
 /**
  * @description:
- * @author: hang
- * @create: 2022/5/5
  **/
 public class Kangtuo {
     static int N = 4;
