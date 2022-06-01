@@ -253,7 +253,7 @@ public class NoahGuavaTest {
     public void guava_test_time() {
 
         LoadingCache<Long, String> activityCache = CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.SECONDS)
-                .refreshAfterWrite(6, TimeUnit.SECONDS).build(new CacheLoader<Long, String>() {
+                .refreshAfterWrite(6, TimeUnit.SECONDS).maximumSize(5L).build(new CacheLoader<Long, String>() {
                     @Override
                     public String load(Long id) throws Exception {
                         log.info("触发了db查询，id:{}", id);
@@ -263,11 +263,9 @@ public class NoahGuavaTest {
                 });
 
 
-        LongStream.range(1, 3).forEach(i -> {
+        LongStream.range(1, 10).forEach(i -> {
             try {
                 activityCache.get(i);
-                //log.info("r=");
-                //TimeUnit.SECONDS.sleep(12);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -277,8 +275,10 @@ public class NoahGuavaTest {
         });
 
         while (true) {
-            TimeUnit.SECONDS.sleep(19);
+
+            TimeUnit.SECONDS.sleep(2);
             String ifPresent = activityCache.get(1L);
+            System.out.println("key=" + 1 + ",value=" + ifPresent + ",size=" + activityCache.size());
         }
     }
 
