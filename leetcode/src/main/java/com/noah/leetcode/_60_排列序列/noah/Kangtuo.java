@@ -6,12 +6,13 @@ import java.math.BigInteger;
  * @description:
  **/
 public class Kangtuo {
-    static int N = 4;
-    static long K = 2; //TODO toBigInteger
+    static int N = 10000;
+    static long K = 1; //TODO toBigInteger
 
     static BigInteger f[] = new BigInteger[N];
 
     public static void main(String[] args) {
+        long l = System.currentTimeMillis();
         f[0] = new BigInteger("1");
         for (int i = 1; i < N; i++) {
             f[i] = f[i - 1].multiply(new BigInteger(String.valueOf(i)));
@@ -28,6 +29,7 @@ public class Kangtuo {
             kthUtil.del(a);
             K = K - k.multiply(f[i]).intValue();
         }
-        System.out.println(kthUtil.find_kth(1));
+        System.out.print(kthUtil.find_kth(1) + ",");
+        System.out.println((System.currentTimeMillis() - l) / 1000);
     }
 }

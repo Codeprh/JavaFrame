@@ -15,7 +15,11 @@ public class AppTest {
         //    //System.out.println("i=" + i + ",r=" + getFactorial(i));
         //}
         //System.out.println(Integer.MAX_VALUE + "");
+        long begin = System.currentTimeMillis();
         System.out.println(inverseCantorExpansion(10000, 1));//52413
+        long second = (System.currentTimeMillis() - begin) / 1000;
+        System.out.println("====");
+        System.out.println(second);
         //System.out.println(inverseCantorExpansion(8, 27));// 12354768
     }
 
@@ -51,7 +55,7 @@ public class AppTest {
             //k %= Xfactorial;
             // 同时更新数组，删除已经获得过的数字
             array.remove(index);
-            System.out.println(array.get(index));
+            //System.out.println(array.get(index));
         }
         return ans.toString();
     }

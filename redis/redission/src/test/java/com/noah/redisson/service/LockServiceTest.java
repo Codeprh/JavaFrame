@@ -4,8 +4,10 @@ import com.noah.redisson.RedisApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.Redisson;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -62,6 +64,28 @@ public class LockServiceTest {
 
         } catch (Exception e) {
             log.error("", e);
+        } finally {
+            lock.unlock();
+        }
+
+    }
+
+    @Test
+    public void myConfigTest() {
+
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+
+        RedissonClient redissonClient = Redisson.create(config);
+        RLock lock = redissonClient.getLock("noahPan");
+
+        lock.lock();
+        try {
+
+            TimeUnit.SECONDS.sleep(60*100);
+            System.out.println("redis task over");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             lock.unlock();
         }
