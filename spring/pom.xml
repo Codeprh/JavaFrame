@@ -15,6 +15,7 @@
         <module>noahspring</module>
         <module>asynAnnotations</module>
         <module>retry</module>
+        <module>asyncMore</module>
     </modules>
 
     <properties>
