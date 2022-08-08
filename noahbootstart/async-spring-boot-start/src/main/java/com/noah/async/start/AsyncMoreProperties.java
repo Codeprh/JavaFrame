@@ -1,8 +1,10 @@
 package com.noah.async.start;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "async")
+@Data
 public class AsyncMoreProperties {
 
     private String more;
