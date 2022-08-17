@@ -1,6 +1,10 @@
 package com.noah.lock.transaction.controller;
 
 import com.noah.lock.transaction.domain.service.ProductDomainService;
+import com.noah.lock.transaction.service.IOrdersService;
+import com.noah.lock.transaction.service.IProductService;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +14,17 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("noah")
+@Slf4j
 public class NoahController {
 
     @Resource
     ProductDomainService productDomainService;
+
+    @Resource
+    IOrdersService ordersService;
+
+    @Resource
+    IProductService productService;
 
     @GetMapping("/product/sell")
     public String sellProduct(@RequestParam Long id) {
@@ -25,6 +36,14 @@ public class NoahController {
     public String sellProductError(@RequestParam Long id) {
         productDomainService.sellProductError(id);
         return "200";
+    }
+
+    @SneakyThrows
+    @GetMapping("/product/add")
+    public String sayHello() {
+        productDomainService.saveProduct();
+        return "success";
+
     }
 
 }

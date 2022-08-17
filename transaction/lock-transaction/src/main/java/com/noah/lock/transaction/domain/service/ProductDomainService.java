@@ -1,14 +1,18 @@
 package com.noah.lock.transaction.domain.service;
 
+import com.noah.lock.transaction.controller.exception.CException;
+import com.noah.lock.transaction.controller.exception.CExceptionA;
 import com.noah.lock.transaction.entity.Orders;
 import com.noah.lock.transaction.entity.Product;
 import com.noah.lock.transaction.service.IOrdersService;
 import com.noah.lock.transaction.service.IProductService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -26,16 +30,33 @@ public class ProductDomainService {
     IProductService productService;
 
     public static void main(String[] args) {
-        String name="noah";
-        String namePlus="noah123";
+        String name = "noah";
+        String namePlus = "noah123";
 
         System.out.println(namePlus.contains(name));
         System.out.println(name.contains(namePlus));
 
-        int a=2<<16;
+        int a = 2 << 16;
         System.out.println(a);
         //System.out.println(namePlus.contains(name));
         //exceptionClass.getName().contains(this.exceptionName)
+    }
+
+    @Transactional(rollbackFor = CException.class)
+    public boolean saveProduct() throws Throwable {
+
+        Product product = new Product();
+
+        product.setStock(99L);
+        product.setName(UUID.randomUUID().toString());
+
+        boolean save = productService.save(product);
+
+        if (true) {
+            throw new CExceptionA();
+        }
+
+        return save;
     }
 
     /**
