@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import javax.annotation.Resource;
 
@@ -25,6 +26,22 @@ public class NoahController {
 
     @Resource
     IProductService productService;
+
+    @GetMapping("/helloAsync")
+    public DeferredResult<String> testDeferredResult() {
+
+        DeferredResult<String> result = new DeferredResult<>(5000L, "i am timeout");
+
+        ThreadLocal<String> threadLocal = new ThreadLocal<>();
+        threadLocal.set("hello spring" + System.currentTimeMillis());
+
+
+        new Thread(() -> {
+            result.setResult("hello i am finish");
+        }).start();
+
+        return result;
+    }
 
     @GetMapping("/product/sell")
     public String sellProduct(@RequestParam Long id) {

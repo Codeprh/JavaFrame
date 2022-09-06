@@ -19,7 +19,15 @@ public class HelloRetryController {
     @GetMapping("hello")
     public String helloRetry() {
         log.info("hello retry");
-        retryService.service();
-        return "hello retry";
+        return retryService.service();
     }
+
+    @GetMapping("hello/1")
+    public String helloRetry1() {
+        log.info("hello retry1");
+        while (1 == 1) {
+        }
+        //return "hello1";
+    }
+
 }
