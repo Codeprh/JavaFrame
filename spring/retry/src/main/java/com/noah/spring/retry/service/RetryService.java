@@ -5,6 +5,7 @@ import org.springframework.remoting.RemoteAccessException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
+import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,10 @@ public class RetryService {
         dosomething();
 
         return "service";
+    }
+
+    public void doXx() {
+
     }
 
     @Recover

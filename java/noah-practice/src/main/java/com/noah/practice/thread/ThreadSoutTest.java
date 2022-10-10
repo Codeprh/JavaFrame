@@ -1,21 +1,16 @@
-package com.noah.practice.jvm;
+package com.noah.practice.thread;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * https://mp.weixin.qq.com/s/AhoTKmXfRW0RDC3rS5SZcw
- * 思考来源
- */
-public class IssueJava {
+public class ThreadSoutTest {
 
     public static AtomicInteger num = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
         Runnable runnable = () -> {
-            for (long i = 0; i < 1000000000; i++) {
+            for (int i = 0; i < 10000_00000; i++) {
                 num.getAndAdd(1);
             }
-            System.out.println(Thread.currentThread().getName() + "执行结束!");
         };
 
         Thread t1 = new Thread(runnable);

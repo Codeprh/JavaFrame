@@ -17,6 +17,7 @@
         <module>retry</module>
         <module>asyncMore</module>
         <module>logMore</module>
+        <module>springCode</module>
     </modules>
 
     <properties>

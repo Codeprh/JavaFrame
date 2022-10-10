@@ -1,20 +1,29 @@
 package com.noah.practice.io;
 
+import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 
 import java.io.File;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class HandleDDD {
 
+    //public static void main(String[] args) {
+    //    //String path = "/Users/noah/Documents/noah/noahGithub/dddTemplate/";
+    //    ////String path = "/Users/noah/Desktop/ddd-pre/";
+    //    //File files = new File(path);
+    //    //doExtract(files);
+    //
+    //}
+
     public static void main(String[] args) {
-        String path = "/Users/noah/Documents/noah/noahGithub/dddTemplate/";
-        //String path = "/Users/noah/Desktop/ddd-pre/";
-        File files = new File(path);
-        doExtract(files);
+        ArrayList<Object> objectArrayList = Lists.newArrayList();
+        List<Object> objects = objectArrayList.subList(0, objectArrayList.size());
+        System.out.println();
     }
 
     /**
