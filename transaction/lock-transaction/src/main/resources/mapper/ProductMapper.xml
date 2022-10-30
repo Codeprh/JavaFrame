@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.noah.lock.transaction.mapper.ProductMapper">
 
+    <sql id="base_all">
+        id
+    </sql>
+
+    <select id="query00" resultType="com.noah.lock.transaction.entity.Product">
+        select
+        <include refid="base_all"></include>
+        from product
+        <where>
+            <if test="stock != null and stock != '' ">
+                and stock = #{stock}
+            </if>
+        </where>
+    </select>
+
 </mapper>

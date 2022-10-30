@@ -1,19 +1,20 @@
 package com.noah.lock.transaction.controller;
 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 前端控制器
+ * 订单表 前端控制器
  * </p>
  *
  * @author noah
- * @since 2022-03-05
+ * @since 2022-10-29
  */
 @Controller
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/order-info")
+public class OrderInfoController {
 
 }

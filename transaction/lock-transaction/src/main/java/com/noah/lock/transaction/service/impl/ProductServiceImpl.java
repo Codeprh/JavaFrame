@@ -7,6 +7,7 @@ import com.noah.lock.transaction.service.IProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -25,5 +26,10 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     public Integer sellProduct(Long id) {
         return productMapper.sellProduct(id);
+    }
+
+    @Override
+    public List<Product> query00(Integer stock) {
+        return productMapper.query00(stock);
     }
 }

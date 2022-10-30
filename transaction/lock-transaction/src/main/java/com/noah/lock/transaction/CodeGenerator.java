@@ -3,6 +3,7 @@ package com.noah.lock.transaction;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.io.File;
@@ -36,12 +37,14 @@ public class CodeGenerator {
         String projectPath = new File(System.getProperty("user.dir")).getParent() + "/JavaFrame/transaction/lock-transaction/src/main/java";
         String resourePath = new File(System.getProperty("user.dir")).getParent() + "/JavaFrame/transaction/lock-transaction/src/main/";
 
-        FastAutoGenerator.create("jdbc:mysql://11.xx.xx:32282/noah?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useAffectedRows=true",
-                "root", "noah123")
+        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/noah?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useAffectedRows=true",
+                "root", "Noah123@")
                 .globalConfig(builder -> {
                     builder.author("noah") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
+                            .disableOpenDir()
+                            .dateType(DateType.ONLY_DATE)
                             .outputDir(projectPath); // 指定输出目录
                 })
                 .packageConfig(builder -> {
@@ -50,7 +53,9 @@ public class CodeGenerator {
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, resourePath + "/resources/mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("product"); // 设置需要生成的表名
+                    builder.addInclude("order_info")
+                            .controllerBuilder()
+                    ; // 设置需要生成的表名
 
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板

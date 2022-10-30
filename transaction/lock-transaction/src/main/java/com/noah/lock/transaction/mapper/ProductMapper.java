@@ -5,6 +5,8 @@ import com.noah.lock.transaction.entity.Product;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 /**
  * <p>
  * Mapper 接口
@@ -17,5 +19,7 @@ public interface ProductMapper extends BaseMapper<Product> {
 
     @Update("update product set stock = stock - 1 where stock > 0 and id = #{id}")
     public Integer sellProduct(@Param("id") Long id);
+
+    List<Product> query00(@Param("stock") Integer stock);
 
 }

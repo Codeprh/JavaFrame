@@ -20,6 +20,6 @@ logging:
 #        transaction: debug
 #        orm.jpa: debug
 #        web: info
-    ROOT: debug
+    ROOT: info
 #    com.baomidou.mybatisplus: info
 #    noah.spring.transaction.mapper: info

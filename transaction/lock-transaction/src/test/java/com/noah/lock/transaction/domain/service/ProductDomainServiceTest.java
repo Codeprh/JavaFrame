@@ -1,6 +1,8 @@
 package com.noah.lock.transaction.domain.service;
 
 import com.noah.lock.transaction.LockTransactionApplication;
+import com.noah.lock.transaction.entity.Product;
+import com.noah.lock.transaction.service.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,6 +24,18 @@ public class ProductDomainServiceTest {
 
     @Resource
     ProductDomainService productDomainService;
+
+    @Resource
+    IProductService iProductService;
+
+    @Test
+    public void test00() {
+
+        log.info("hello zzzz 00000");
+
+        List<Product> products = iProductService.query00(0);
+        log.info(products.toString());
+    }
 
     @Test
     public void test() {
