@@ -26,5 +26,16 @@ public class MyRedissonConfig {
         config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         return Redisson.create(config);
     }
+
+    public static void main(String[] args) {
+        String str = "dd";
+        String str2 = "dd";
+        int strCode = System.identityHashCode(str);
+        int strCode2 = System.identityHashCode(str2);
+        int strHashCode = str.hashCode();
+        int str2HashCode = str.hashCode();
+        System.out.println("str identityHashCode:" + strCode);
+        System.out.println("str identityHashCode:" + strCode2);
+    }
 }
 

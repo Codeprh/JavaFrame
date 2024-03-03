@@ -1,5 +1,6 @@
 package com.noah.jmh.map;
 
+import io.netty.util.collection.IntObjectHashMap;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -16,11 +17,7 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
@@ -38,47 +35,41 @@ import java.util.stream.IntStream;
 @State(Scope.Benchmark)
 //度量:iterations进行测试的轮次，time每轮进行的时长，timeUnit时长单位,batchSize批次数量
 @Measurement(iterations = 100, time = 1, timeUnit = TimeUnit.MILLISECONDS, batchSize = -1)
-public class HashMapBenchmark {
+public class HashMapKeyTypeBenchmark {
 
-    static Map<Long, Double> longMap = new HashMap<>();
-    static Map<BigInteger, Double> bigIntegerMap = new HashMap<>();
+    static IntObjectHashMap<String> map = new IntObjectHashMap<>();
 
-    static List<Long> keyList = new ArrayList<>(10000);
+    static HashMap<Integer, String> hashMap = new HashMap<>();
+
+    static final String a = "a";
 
     static {
 
-        IntStream.rangeClosed(1, 10000).forEach(i -> {
+        IntStream.rangeClosed(1, 100).forEach(i -> {
 
-            int nextInt = ThreadLocalRandom.current().nextInt(1000, 1000000);
-            keyList.add((long) nextInt);
+            map.put(i, a + i);
+            hashMap.put(i, a + i);
 
-            double doubleValue = Integer.valueOf(nextInt).doubleValue();
-
-            longMap.put((long) nextInt, doubleValue);
-            bigIntegerMap.put(new BigInteger(String.valueOf(nextInt)), doubleValue);
         });
     }
 
     @Benchmark
-    public void bigIntegerMap() {
-        int index = ThreadLocalRandom.current().nextInt(0, keyList.size() - 1);
-        Long mapKey = keyList.get(index);
-
-        bigIntegerMap.get(new BigInteger(String.valueOf(mapKey)));
+    public void netty() {
+        int index = ThreadLocalRandom.current().nextInt(1, 100);
+        map.get(index);
     }
 
     @Benchmark
-    public void longMap() {
-        int index = ThreadLocalRandom.current().nextInt(0, keyList.size() - 1);
-        Long mapKey = keyList.get(index);
-        longMap.get(mapKey);
+    public void jdk() {
+        int index = ThreadLocalRandom.current().nextInt(1, 100);
+        map.get(index);
     }
 
     public static void main(String[] args) throws RunnerException {
         System.out.println("hello world");
         Options opt = new OptionsBuilder()
-                .include(HashMapBenchmark.class.getSimpleName())
-                .result("result_hashmap_plus.json")
+                .include(HashMapKeyTypeBenchmark.class.getSimpleName())
+                .result("result_hashmap.json")
                 .resultFormat(ResultFormatType.JSON)
                 .build();
         new Runner(opt).run();

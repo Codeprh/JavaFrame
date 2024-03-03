@@ -1,10 +1,8 @@
 package com.noah.practice.thread;
 
 import lombok.SneakyThrows;
-import org.omg.CORBA.TIMEOUT;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 public class ThreaA_ThreaB_do {
 
@@ -12,9 +10,12 @@ public class ThreaA_ThreaB_do {
 
     @SneakyThrows
     public static void main(String[] args) {
-        CountDownLatch cdl = new CountDownLatch(1);
+
+        CountDownLatch cdl = new CountDownLatch(100);
+
         Thread a = new Thread(() -> {
             ThreaA_ThreaB_do.var++;
+            System.out.println("i am a value=" + var);
             cdl.countDown();
         });
 

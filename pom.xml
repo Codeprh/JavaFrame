@@ -39,6 +39,7 @@
         <module>leetcode</module>
         <module>jmh</module>
         <module>noahscript</module>
+        <module>xxl-demo</module>
     </modules>
 
 

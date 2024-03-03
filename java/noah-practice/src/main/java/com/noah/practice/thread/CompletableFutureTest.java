@@ -1,10 +1,20 @@
 package com.noah.practice.thread;
 
-import com.google.common.util.concurrent.*;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import lombok.SneakyThrows;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.springframework.web.context.request.async.DeferredResult;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 真的异步编程
@@ -120,12 +130,51 @@ public class CompletableFutureTest {
 
     }
 
+    public static void testDeferredResultWithTimeout() throws InterruptedException {
+        DeferredResult<String> deferredResult = new DeferredResult<>(500L,"55555555");
+
+        Thread.sleep(1000);
+
+
+        //CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+        //    // 模拟耗时操作
+        //    try {
+        //        Thread.sleep(1000);
+        //    } catch (InterruptedException e) {
+        //        e.printStackTrace();
+        //    }
+        //    return "Hello, async!";
+        //});
+        //
+        //future.thenAccept(result -> {
+        //    // 异步操作完成后，设置结果到DeferredResult
+        //    deferredResult.setResult(result);
+        //});
+        //
+        //// 设置超时默认逻辑
+        //deferredResult.onTimeout(() -> {
+        //    deferredResult.setErrorResult("Timeout occurred. Executing default logic.");
+        //});
+
+        // 等待结果
+        String result = (String) deferredResult.getResult();
+
+        System.out.println("123131321321:"+result);
+    }
+
 
     public static void main(String[] args) throws InterruptedException {
-        //jdkFuture();
-        //guavaFuture();
-        jdkCompletable();
-        Thread.currentThread().join();
+        testDeferredResultWithTimeout();
+        System.out.println(" i am debug");
+    }
+
+    static void m1(){
+        System.out.println("i am m1");
+        m2();
+    }
+
+    private static void m2() {
+        System.out.println("i am m2");
     }
 
 }
